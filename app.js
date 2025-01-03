@@ -1,5 +1,6 @@
 //declaring all of the buttons as variables 
 
+let button_0 = document.querySelector('#zero');
 let button_1 = document.querySelector('#one');
 let button_2 = document.querySelector('#two');
 let button_3 = document.querySelector('#three');
@@ -26,7 +27,12 @@ let value2;
 let operator;
 
 
+
 //adding in event listeners to all buttons 
+button_0.addEventListener('click', ()=> {
+    let old = screen.value;
+    screen.value = old + button_0.textContent;
+})
 
 button_1.addEventListener('click', ()=>{
     let old = screen.value;
@@ -78,7 +84,11 @@ button_9.addEventListener('click', ()=>{
 subtract.addEventListener('click', ()=>{
     let old = screen.value;
     let value1 = old;
-    let operator ="subract";
+    if(operator != ''){
+        alert("you can only do one operation at a time");
+        return;
+    }
+    operator ="-";
     screen.value = old + subtract.textContent;
 
 })
@@ -86,33 +96,92 @@ subtract.addEventListener('click', ()=>{
 add.addEventListener('click', ()=>{
     let old = screen.value;
     let value1 = old;
-    let operator ="add";
+    if(operator != ''){
+        alert("you can only do one operation at a time");
+        return;
+    }
+    operator ="+";
     screen.value = old + add.textContent;
 })
 
 multiply.addEventListener('click', ()=>{
     let old = screen.value;
     let value1 = old;
-    let operator ="multiply";
+    if(operator != ''){
+        alert("you can only do one operation at a time");
+        return;
+    }
+    operator ="*";
     screen.value = old + multiply.textContent;
 })
 
 divide.addEventListener('click', ()=>{
     let old = screen.value;
     let value1 = old;
-    let operator ="divide";
+    if(operator != ''){
+        alert("you can only do one operation at a time");
+        return;
+    }
+    operator ="/";
     screen.value = old + divide.textContent;
 })
 
 clear.addEventListener('click', ()=>{
     screen.value = '';
+    operator = '';
+})
+
+document.addEventListener('keydown', (event)=>{
+    if (event.key === 'Enter'){
+        solve();
+    }
 })
 
 enter.addEventListener('click', ()=>{
 
     
+    solve();
+
+
 
 })
 
 
 
+function solve(){
+    let str = screen.value;
+    let charIndex = str.indexOf(operator);
+    console.log(charIndex);
+
+    value1 = str.slice(0, charIndex);
+    value2 = str.slice(charIndex + 1);
+
+   switch (operator) {
+
+    case '*':
+            screen.value = value1*value2;
+    break;
+
+    case '+':
+            screen.value = Number(value1)+Number(value2);
+    break;
+
+    case '-':
+            screen.value = value1-value2;
+    break;
+
+    case '/':
+        if(value2 == 0){
+            alert("you can't divide by zero, what are you trying to do?!");
+            return;
+        }
+        else{
+            screen.value = value1/value2;
+        }
+    break;
+
+
+   }
+
+   operator = '';
+}
