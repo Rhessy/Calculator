@@ -1,0 +1,46 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-body{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 600px;
+    width: 400px;
+    border: solid 5px;
+}
+
+.operators{
+    display: flex;
+    gap: 30px;
+    width: 300px;
+}
+.top{
+    display: flex; 
+    gap: 30px;
+    width: 300px;
+}
+.screen{
+    height: 50px;
+    width: 300px;
+    font-size: large;
+}
+
+button{
+    height: 80px;
+    width : 80px;
+}
+
+.numbers{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: flex-end;
+    gap: 30px;
+}
